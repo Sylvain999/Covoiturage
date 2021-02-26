@@ -2,34 +2,35 @@
 <h1>Ajouter une ville</h1>
 
 <?php
-if (empty($_POST["vil_nom"])){?>
+if (empty($_POST["vil_nom"])) {
+    ?>
 <form id="ajouterVille" name="ajouterVille" action="#" method="POST">
-  <div>
-    <label> Nom : </label>
-    <input id="vil_nom" name="vil_nom" type="text" required>
+	<label for="vil_nom"> Nom : </label> 
+    <input id="vil_nom" name="vil_nom" type="text" required> 
     <input type="submit" value="Valider">
-  </div>
 </form>
 
 
-<?php }else{
-  $pdo = new Mypdo();
-  $manager = new VilleManager($pdo);
-  $ville = new Ville($_POST);
+<?php
+} else {
+    $pdo = new Mypdo();
+    $manager = new VilleManager($pdo);
+    $ville = new Ville($_POST);
 
-  echo $ville->getNom();
-
-  $retour = $manager->inserer($ville);
-
-  if($retour){?>
-    <img src="image/valid.png">
-    <?php
-    echo "<p> la ville ".$_POST["vil_nom"]." a été ajouté </p>";
-  }else{
-    ?>
-    <img src="image/erreur.png">
-    <?php
-    echo "<p> quelquechose s'est mal passé </p>";
-  }
+    if ($manager->insert($ville)) {
+        ?>
+        <div class="resultatRequete">
+            <img src="image/valid.png">
+            <p> La ville <?php echo $ville->getNom() ?> a été ajouté </p>
+        </div>
+<?php
+    } else {
+        ?>
+        <div class="resultatRequete">
+            <img src="image/erreur.png">
+            <p>Quelquechose s'est mal passé lors de l'insertion</p>
+        </div>
+<?php
+    }
 }
 ?>

@@ -63,13 +63,22 @@ case 8:
 //
 case 9:
 	// inclure ici la page proposer trajet
-		
-		include_once('pages/ProposerTrajet.inc.php');		
+	if(empty($_SESSION["utilisateur"])){
+		header('Location: index.php');
+		exit();
+	}else{
+		include_once('pages/ProposerTrajet.inc.php');
+	}
+				
     break;
 case 10:
 	// inclure ici la page rechercher trajet
-			
-		include_once('pages/ChercherTrajet.inc.php');		
+	if(empty($_SESSION["utilisateur"])){
+		header('Location: index.php');
+		exit();
+	}else{
+		include_once('pages/ChercherTrajet.inc.php');
+	}		
 	
     break;
     
@@ -79,7 +88,7 @@ case 11:
     break;
 
 case 12:
-	// inclure ici la page de déconnexion
+	// inclure ici la page de dÃ©connexion
 	include_once('pages/Deconnexion.inc.php');
     break;    
     

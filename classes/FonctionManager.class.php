@@ -11,6 +11,8 @@ class FonctionManager{
 
 		$result = $this->db->query($requete);
 
+		$liste_fonction = array();
+
 		while($fonction = $result->fetch(PDO::FETCH_OBJ)){
 			$liste_fonction[] = new Fonction($fonction);
 		}

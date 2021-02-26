@@ -11,6 +11,8 @@ class DepartementManager{
 
 		$result = $this->db->query($requete);
 
+		$liste_departement = array();
+
 		while($parcours = $result->fetch(PDO::FETCH_OBJ)){
 			$liste_departement[] = new Departement($parcours);
 		}

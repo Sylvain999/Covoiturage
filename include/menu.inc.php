@@ -19,11 +19,18 @@
 			<li><a href="index.php?page=8">Lister</a></li>
 		</ul>
 
+		<?php
+			if(!empty($_SESSION["utilisateur"])){
+		?>
+		
 		<p><img src="image/trajet.png" class="imagMenu" alt="Trajet"/>Trajet</p>
 		<ul>
 			<li><a href="index.php?page=9">Proposer</a></li>
 			<li><a href="index.php?page=10">Rechercher</a></li>
 		</ul>
-
+		
+		<?php
+			}
+		?>
 	</div>
 </div>

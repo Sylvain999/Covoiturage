@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
 </head>
 	<body>
-	<div id="header">	
+	<div id="header">
 		<div id="entete">
 			<div class="colonne">
 				<a href="index.php?page=0">
@@ -27,8 +27,23 @@
 			</div>
 			</div>
 			<div id="connect">
-				<a href="index.php?page=11">Connexion</a>
-			</div>
-	</div>
-	
+				<?php
+					if(empty($_SESSION["utilisateur"])){
+				?>
 
+				<a href="index.php?page=11">Connexion</a>
+
+				<?php
+					}else{
+				?>
+
+				<b>Utilisateur : <?php echo $_SESSION["utilisateur"]->getLogin() ?> </b>
+
+				<a href="index.php?page=12">Déconnexion</a>
+		
+				<?php
+					}
+				?>
+			</div>
+			
+	</div>

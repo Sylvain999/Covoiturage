@@ -11,6 +11,8 @@ class DivisionManager{
 
 		$result = $this->db->query($requete);
 
+		$liste_division = array();
+
 		while($division = $result->fetch(PDO::FETCH_OBJ)){
 			$liste_division[] = new Division($division);
 		}

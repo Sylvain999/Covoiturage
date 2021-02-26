@@ -4,8 +4,10 @@
 <?php
   $pdo = new Mypdo();
   $manager = new VilleManager($pdo);
-  $nb = $manager->nbVilles();
-  echo "<p>Actuellement $nb->nbVilles villes sont enregistrés</p>";
+  ?>
+  <p>Actuellement <?php echo $manager->nbVilles() ?> villes sont enregistrés</p>
+
+  <?php
 
   $liste = $manager->getList();
 
@@ -18,11 +20,12 @@
   </tr>
 <?php
   foreach($liste as $ville){
-    ?>
-    <tr>
-      <td><?php echo $ville->getNum() ?></td>
-      <td><?php echo $ville->getNom() ?></td>
-    </tr>
+?>
+
+  <tr>
+    <td><?php echo $ville->getNum() ?></td>
+    <td><?php echo $ville->getNom() ?></td>
+  </tr>
   <?php
   }
 ?>

@@ -4,12 +4,12 @@
 <?php
   $pdo = new Mypdo();
   $manager = new ParcoursManager($pdo);
-  $nb = $manager->nbParcours();
-  echo "<p>Actuellement $nb->nbParcours parcours sont enregistrés</p>";
 
   $liste = $manager->getList();
 
 ?>
+
+<p>Actuellement <?php echo $manager->nbParcours() ?> parcours sont enregistrés</p>
 
 <table>
   <tr>
@@ -23,8 +23,8 @@
     ?>
   <tr>
     <td><?php echo $parcours->getParNum() ?></td>
-    <td><?php echo $parcours->getVille1() ?></td>
-    <td><?php echo $parcours->getVille2() ?></td>
+    <td><?php echo $manager->getNomVille1($parcours) ?></td>
+    <td><?php echo $manager->getNomVille2($parcours) ?></td>
     <td><?php echo $parcours->getParKm() ?></td>
   </tr>
   <?php

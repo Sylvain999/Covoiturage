@@ -15,7 +15,7 @@ class Personne{
 		}
 	}
 
-	public function affecte($donnees = array()){
+	protected function affecte($donnees = array()){
 		foreach($donnees as $attribut => $valeur){
 			switch ($attribut){
 				case 'per_num': $this->per_num = $valeur;
@@ -30,7 +30,7 @@ class Personne{
 				break;
 				case 'per_login': $this->per_login = $valeur;
 				break;
-				case 'per_pwd': $this->per_pwd = sha1($valeur);
+				case 'per_pwd': $this->per_pwd = $valeur;
 				break;
 			}
 		}

@@ -25,9 +25,6 @@ body{
   display:table-cell;
   padding:25px;
 }
-.colonne:first-child {
-
-}
 
 .colonne:nth-child(2) {
 	vertical-align:middle;
@@ -149,7 +146,33 @@ h1{
 
 
 table{
-	background-color:red;
+	display:flex;
+	justify-content: center;
+	border-collapse: collapse;
+	border-spacing:0;
+	margin-bottom:20px;
+}
+
+td, th{
+	padding : 5px;
+	width:180px;
+}
+
+td{
+	border : 1px solid black;
+}
+
+th{
+	font-weight: bold;
+}
+
+label{
+	width : 100%;
+}
+
+input, select{
+	border-radius:5px;
+	background-color:rgb(240, 240, 240);
 }
 
 
@@ -169,6 +192,49 @@ table{
 	text-decoration: none;
 }
 
-#connect a :visited{
 
+.grid_display{
+	display : grid;
+	grid-template-columns: 24% 24% 24% 24%;
+	row-gap: 10px;
+	width : 80%;
+	text-align:center;
+	margin : auto;
+}
+
+
+input[type="submit"]{
+	cursor:pointer;
+	font-size : 17px;
+	background-color : black;
+	color:white;
+	padding : 5px 20px;
+	margin-top:10px;
+}
+
+.resultatRequete{
+	display:inline-flex;
+	margin : 50px 0px;
+}
+
+.resultatRequete img{
+	width : 20px;
+	height : 20px;
+}
+
+p{
+	padding : 0px;
+	margin : 0px;
+}
+
+table a{
+	font-weight:bold;
+}
+
+.alignerColonne{
+	display:flex;
+	flex-direction:column;
+	row-gap:5px;
+	width : 200px;
+	margin:auto;
 }

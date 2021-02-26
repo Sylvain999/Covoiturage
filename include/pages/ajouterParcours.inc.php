@@ -4,35 +4,37 @@
 <?php
   $pdo = new Mypdo();
 
-  if (empty($_POST["vil_num1"])){
-
   $manager = new VilleManager($pdo);
 
   $listeVilles = $manager->getList();
 ?>
 
-<form id="AjouterParcours" name="AjouterParcours" method="POST">
-  <label>Ville 1 : </label>
+<form action="#" id="AjouterParcours" name="AjouterParcours" method="POST">
+  <label for="vil_num1">Ville 1 : </label>
   <select id="vil_num1" name="vil_num1">
   <?php
   foreach($listeVilles as $ville){
-    echo "<option value=\"".$ville->getNum()."\">".$ville->getNom()."</option>";
+    ?>
+    <option value="<?php echo $ville->getNum() ?>"> <?php echo $ville->getNom() ?> </option>
+    <?php
   }
 
    ?>
 
   </select>
 
-  <label>Ville 2 : </label>
+  <label for="vil_num2" >Ville 2 : </label>
   <select id="vil_num2" name="vil_num2">
     <?php
     foreach($listeVilles as $ville){
-      echo "<option value=\"".$ville->getNum()."\">".$ville->getNom()."</option>";
+    ?>
+    <option value="<?php echo $ville->getNum() ?>"> <?php echo $ville->getNom() ?> </option>
+    <?php
     }
      ?>
   </select>
 
-  <label>Nombre de kilomètre(s)</label>
+  <label for="par_km">Nombre de kilomètre(s)</label>
   <input type="number" id="par_km" name="par_km" required>
 
   <br>
@@ -42,21 +44,39 @@
 </form>
 
 <?php
-}else{
+if (!empty($_POST["vil_num1"])){
 
-  $manager = new ParcoursManager($pdo);
+  $managerParcours = new ParcoursManager($pdo);
   $parcours = new Parcours($_POST);
 
-  $result = $manager->inserer($parcours);
+  if($managerParcours->canInsertParcours($parcours)){
+      $result = $managerParcours->insert($parcours);
 
-  if($result){?>
-    <img src="image/valid.png">
-    <?php
-    echo "<p> le parcours a été ajouté </p>";
-  }else{ ?>
-    <img src="image/erreur.png">
-    <?php
-    echo "<p> quelquechose s'est mal passé </p>";
+      if($result){?>
+        <div class="resultatRequete">
+          <img src="image/valid.png">
+          <p> Le parcours a été ajouté </p>
+        </div>
+
+        <?php
+      }else{ ?>
+        <div class="resultatRequete">
+          <img src="image/erreur.png">
+          <p>Quelquechose s'est mal passé lors de l'insertion... </p>
+        </div>
+      <?php
+      }
+  }else{
+      ?>
+      <div class="resultatRequete">
+        <img src="image/erreur.png">
+        <p>Ce parcours ne peut pas être inséré</p>
+      </div>
+      <p>Rappel : On ne peut insérer un parcours exisant déjà, ni un parcours amenant à la même ville</p>
+
+      <?php
   }
+
+  
 }
 ?>
